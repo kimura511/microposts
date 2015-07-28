@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get    'setting'   => 'users#view'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :microposts
 end
