@@ -1,0 +1,9 @@
+<h1><%= @user.name %>のフォロワー</h1>
+<div>あなたは<%= @followings.count %>人にフォローされてます</div>
+<div>あなたのフォロワー<div>
+<ul>
+    <% @followings.each do |f| %>
+        <%= gravatar_for f %>
+        <li><%= f.name %></li>
+    <% end %>
+</ul>

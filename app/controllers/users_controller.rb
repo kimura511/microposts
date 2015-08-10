@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
+    @followings = @user.following_users
+    @followers = @user.follower_users
   end
 
   def new
@@ -19,7 +21,6 @@ class UsersController < ApplicationController
     end
   end
 
-  
   def create
     @user = User.new(user_params)
     if @user.save
@@ -36,6 +37,17 @@ class UsersController < ApplicationController
 
   def view
     @user = User.find(params[:id])
+  end
+
+# ここです
+  def followings
+  @user = User.find(params[:id])
+  @followings = @user.following_users
+  end
+
+  def followers
+  @user = User.find(params[:id])
+  @followers = @user.follower_users
   end
 
   private

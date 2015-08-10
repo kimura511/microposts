@@ -1,0 +1,9 @@
+<h1><%= @user.name %>をフォロー</h1>
+<div>あなたは<%= @followers.count %>人にフォローされてます</div>
+<div>あなたをフォローしてる人<div>
+<ul>
+    <% @followers.each do |f| %>
+        <%= gravatar_for f %>
+        <li><%= f.name %></li>
+    <% end %>
+</ul>
