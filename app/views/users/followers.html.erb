@@ -3,7 +3,6 @@
 <div>あなたをフォローしてる人<div>
 <ul>
     <% @followers.each do |f| %>
-        <%= gravatar_for f %>
-        <li><%= f.name %></li>
+        <li><%= gravatar_for f %><p><%= f.name %></p></li>
     <% end %>
 </ul>

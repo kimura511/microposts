@@ -1,5 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
+# カラムを追加するときは「def change」
   def change
+    #create_tableでテーブルの作成
     create_table :users do |t|
       t.string :name
       t.string :email
