@@ -2,5 +2,5 @@
 <div>あなたは<%= @followings.count %>人にフォローされてます</div>
 <div>あなたのフォロワー<div>
     <% @followings.each do |f| %>
-        <div><%= gravatar_for f %><p><%= f.name %></p></div>
+        <div class="col-md-12"><%= gravatar_for f %><p><%= f.name %></p></div>
     <% end %>
