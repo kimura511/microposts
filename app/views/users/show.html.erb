@@ -5,6 +5,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
             <p>あなたのフォロー<%= link_to @followings.count, followings_user_path %>人</p>
+            <p>あなたのフォロー<%= link_to "#{@users.count} 人" #, followings_user_path %></p>
             <p>あなたをフォロー<%= link_to @followers.count, followers_user_path %>人</p>
       </h1>
     </section>
