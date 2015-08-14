@@ -3,7 +3,11 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
+    
+    if @micropost.image.blank? && @micropost.content.blank?
+      flash[:warning] = "It is improper input!"
+      redirect_to root_url
+    elsif @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
@@ -11,8 +15,16 @@ class MicropostsController < ApplicationController
     end
   end
   
+  def destroy
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    return redirect_to root_url if @micropost.nil?
+    @micropost.destroy
+    flash[:success] = "Micropost deleted"
+    redirect_to request.referrer || root_url
+  end
+  
   private
   def micropost_params
-    params.require(:micropost).permit(:content)
+    params.require(:micropost).permit(:content,:image)
   end
 end

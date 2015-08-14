@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validate  :image_valid?, :if => Proc.new{ |user| user.avatar_changed? && user.errors[:image].blank? }
   has_many :microposts
   has_secure_password
   
@@ -18,6 +19,7 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
+
   # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.create(followed_id: other_user.id)
@@ -37,4 +39,11 @@ class User < ActiveRecord::Base
     Micropost.where(user_id: following_user_ids + [self.id])
   end
   
+def image_valid?
+if image.file.content_type != "image/jpeg"
+errors.add(:image, "不正なファイルが添付されています。")
 end
+end
+  
+end
+

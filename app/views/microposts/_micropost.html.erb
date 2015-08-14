@@ -8,5 +8,6 @@
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
-  </span>
+    <%= image_tag micropost.image %>
+
 </li>
