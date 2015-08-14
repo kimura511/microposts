@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validate  :image_valid?, :if => Proc.new{ |user| user.avatar_changed? && user.errors[:image].blank? }
   has_many :microposts
   has_secure_password
   
